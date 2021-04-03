@@ -24,22 +24,23 @@ const unsigned int MAX_NUM = 100000000;
 */
 int main() {
 	ariel::Board board;
-    unsigned int option = -1;
-    unsigned int shape=0, row, col, flag = 1, message_lenght;
+    unsigned char option = 'a', shape = 'a';
+    unsigned int row, col, flag = 1, message_lenght;
     std::string buffer;
-    while(option != 4){
+    while(option != '4'){
         std::cout << "Welcome to my Message board.\nSelect one option from below:\n" << endl;
         std::cout << "a.Enter 1 to add new message.\nb.Enter 2 to read message from the board.\n";
         std::cout << "c.Enter 3 to show the entire message board.\nd.Enter 4 to close the program." << endl;
         std::cin >> option;
+        getline(cin, buffer);
         
-        if(option == 1){
+        if(option == '1'){
             std::string message;
-            while(shape!=1 && shape!=2){
+            while(shape!='1' && shape!='2'){
                 std::cout << "In what direction would you like to post the message?" << endl;
                 std::cout << "a.Enter 1 for Horizontal direction.\nb.Enter 2 for Vertical direction." << endl;
                 std::cin >> shape;
-                if(shape!=1 && shape!=2){
+                if(shape!='1' && shape!='2'){
                     std::cout << "Wrong cohice, Shape can be Horizontal(By typing 1) or Vertical(by typing 2)\nTry again..." << endl;
                 }
             }
@@ -60,25 +61,25 @@ int main() {
                     flag = 0;
                 }
             }
-            if(shape == 1){
+            if(shape == '1'){
                 board.post(row,col,Direction::Horizontal,message);
-                shape = 0;
+                shape = '0';
                 flag = 1;
             }
-            if(shape == 2){
+            if(shape == '2'){
                 board.post(row,col,Direction::Vertical,message);
-                shape = 0;
+                shape = '0';
                 flag = 1;
             }
 
 
         }
-        if(option == 2){
-            while(shape!=1 && shape!=2){
+        else if(option == '2'){
+            while(shape!='1' && shape!='2'){
                 std::cout << "In what direction would you like to read from message board?" << endl;
                 std::cout << "a.Enter 1 for Horizontal direction.\nb.Enter 2 for Vertical direction." << endl;
                 std::cin >> shape;
-                if(shape!=1 && shape!=2){
+                if(shape!='1' && shape!='2'){
                     std::cout << "Wrong cohice, Shape can be Horizontal(By typing 1) or Vertical(by typing 2)\nTry again..." << endl;
                 }
             }
@@ -96,19 +97,22 @@ int main() {
                     flag = 0;
                 }
             }
-            if(shape == 1){
+            if(shape == '1'){
                 std::cout << board.read(row,col,Direction::Horizontal,message_lenght) << "\n" << endl;
                 shape = 0;
                 flag = 1;
             }
-            if(shape == 2){
+            if(shape == '2'){
                 std::cout << board.read(row,col,Direction::Vertical,message_lenght)<< "\n" << endl;;
                 shape = 0;
                 flag = 1;
             }
         }
-        if(option == 3){
+        else if(option == '3'){
             board.show();
+        }
+        else{
+            std::cout << "The chosen must be between 1 to 4, try again...\n" << endl;
         }
     }
 }
