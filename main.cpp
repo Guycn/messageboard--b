@@ -28,7 +28,8 @@ int main() {
     unsigned int row, col, flag = 1, message_lenght;
     std::string buffer;
     while(option != '4'){
-        std::cout << "Welcome to my Message board.\nSelect one option from below:\n" << endl;
+        buffer = "";
+        std::cout << "\nWelcome to my Message board.\nSelect one option from below:\n" << endl;
         std::cout << "a.Enter 1 to add new message.\nb.Enter 2 to read message from the board.\n";
         std::cout << "c.Enter 3 to show the entire message board.\nd.Enter 4 to close the program." << endl;
         std::cin >> option;
@@ -65,6 +66,7 @@ int main() {
                 board.post(row,col,Direction::Horizontal,message);
                 shape = '0';
                 flag = 1;
+                std::cout << "Congradulation, The message was published.\n" << endl;
             }
             if(shape == '2'){
                 board.post(row,col,Direction::Vertical,message);
